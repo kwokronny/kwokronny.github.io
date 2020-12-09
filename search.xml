@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search> 
+  
+  
+    
+    <entry>
+      <title>KeePassXC 简易教程</title>
+      <link href="202011/keepassxc-tutorials/"/>
+      <url>202011/keepassxc-tutorials/</url>
+      
+        <content type="html"><![CDATA[<img src="/202011/keepassxc-tutorials/cover.png" width="0" height="0"><blockquote><p>前面我写了一篇安利这款应用文章，接下来也就给大家大概的介绍下这款软件的使用教程 </p><a href="/202011/recommend-keepass/" title="安利一款免费好用的开源密码管理软件 - KeePassXC">安利一款免费好用的开源密码管理软件 - KeePassXC</a></blockquote><h2 id="使用教程"><a href="#使用教程" class="headerlink" title="使用教程"></a>使用教程</h2><ol><li><h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><p> 再放置个传送门 <a href="https://keepassxc.org/" target="_blank" rel="noopener">传送门</a><br> 根据自己的系统下载匹配的<code>KeePassXC</code>软件,</p> <img src="/202011/keepassxc-tutorials/download_page.png"><p> 下载后按系统常用方式安装软件即可。</p></li><li><h3 id="生成密码库文件"><a href="#生成密码库文件" class="headerlink" title="生成密码库文件"></a>生成密码库文件</h3><blockquote><p>已用KeePass或其他第三方基于KeePass的软件生成的密码文件，可跳过此步骤，直接打开食用<br> 安装完成后并打开后，如下图所示（软件语言多种，默认跟随系统语言）</p></blockquote><ol><li><p>点击 <code>新建数据库/Create new database</code> 弹出新建窗口</p></li><li><p>填写数据库名称，点击下一步。</p><img src="/202011/keepassxc-tutorials/create_lib.png"></li><li><p>加密设置，此步骤可直接下一步，亦可详细了解下，毕竟我的隐私不涉及PY交易，所以加密复杂度正常就好。（后面想改也可以改）</p><img src="/202011/keepassxc-tutorials/setting_encrypt.png"></li><li><p>密码设置，输入你的主密码，及再次输入后，确认并保存到存储的位置就完成啦。</p><blockquote><p>数据库的钥匙，唯一要记住的密码，每次数据库因限定时间未使用时或锁屏离开后锁定时，都需要输入这个密码解锁使用存储的密码。（主密码最好定期更换），有条件的亦可增加硬件设备使用，增强安全性。</p></blockquote><img src="/202011/keepassxc-tutorials/setting_main_password.png"></li><li><p>__最后一个大问题__：密码的存放</p><p>因需要多平台使用，密码库的同步尤为重要；需要借助云盘完成。（当然，亦可以自架服务存储并使用）</p><p>推荐云盘：<code>oneDriver</code></p><p>那同步的位置好了后，接下来就只用把生成好的数据库文件放到云盘就OK啦。</p><img src="/202011/keepassxc-tutorials/icloud.png"></li></ol></li><li><h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h3><ol><li><p>查看设置项，设置项可根据自己的习惯配置，我就不一一说明了。</p><blockquote><p>其中需要注意的是 常规-&gt;基础设置-&gt;用户界面 记得勾选<code>最小化而不是退出应用程序</code>，保持程序启动。</p></blockquote><img src="/202011/keepassxc-tutorials/base_setting.png"></li><li><p>下载浏览器扩展并配置连接数据库</p><img src="/202011/keepassxc-tutorials/setting_browser.png"><p>如上图按需配置，并按所用的浏览器下载对应的扩展。进入浏览器扩展进行配置绑定即可</p><img src="/202011/keepassxc-tutorials/bind_browser.jpg"></li><li><p>当我们打开浏览器登陆时，KeePassXC会通过匹配链接后询问是否授权信息，确认后，当只有一个密码时就会直接自动输入到输入框了，该平台有多个账号时亦可点击输入框后切换。</p><img src="/202011/keepassxc-tutorials/browser_request.png"><img src="/202011/keepassxc-tutorials/browser_input.png"></li></ol><p>还有更多的细节等待你的摸索啦~</p></li></ol>]]></content>
+      
+      
+      <categories>
+          
+          <category> 软件分享 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 软件分享 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>安利一款免费好用的开源密码管理软件 - KeePassXC</title>
+      <link href="202011/recommend-keepass/"/>
+      <url>202011/recommend-keepass/</url>
+      
+        <content type="html"><![CDATA[<img src="/202011/recommend-keepass/cover.png" width="0" height="0"><h2 id="用过的密码管理软件"><a href="#用过的密码管理软件" class="headerlink" title="用过的密码管理软件"></a>用过的密码管理软件</h2><p>推荐前先介绍自己在密码管理上经历过的历程，无兴趣可直接跳过这一段</p><ol><li><h3 id="级别密码制"><a href="#级别密码制" class="headerlink" title="级别密码制"></a>级别密码制</h3><p>统一三个级别的密码，分为：无隐私风险，轻隐私风险，重度隐私风险的密码，密码复杂度按级别升高。方便，只用记三个密码即可尽可能的保护自己的隐私和方便自己的记忆。</p></li><li><h3 id="lastpass"><a href="#lastpass" class="headerlink" title="lastpass"></a>lastpass</h3><p><code>超能小紫</code>最早推荐我用的密码管理的CHORME扩展，后来也因为曝出过相关的密码泄漏新闻，所以就试着找个安全些的。</p></li><li><h3 id="1Password"><a href="#1Password" class="headerlink" title="1Password"></a>1Password</h3><p>同样是<code>超能小紫</code>给我安利的，刚好试着免费试用1年，试用了几个月，个人在使用上感觉在交互还是不太喜爱，各平台的操作相对不统一，密码生成、删除，修改等操作上有些麻烦，特别是我在新平台注册活登陆时不会自动收集我的信息询问我是否存储，不知是不是我没配置好；这样想想订阅费用还是让我稍稍心痛的。</p></li></ol><h2 id="正式安利-KeePass"><a href="#正式安利-KeePass" class="headerlink" title="正式安利 - KeePass"></a>正式安利 - KeePass</h2><p>KeePass起初真只是抱着试试的心态，毕竟大概如果有了解的话，KeePass的相关官网包括网上许多的使用文档中的软件截图，界面风格跟2000年基本无异了；我主要电脑是MacBook的，一开始还真没打算用这套全平台解决方案，想着再找找，但突然认真看了下网站，发现开源的项目，都有着伟大的开源精神的程序员圈子，一个平台出现了三四种基于keepass的第三方版本及各种原生插件。</p><img src="/202011/recommend-keepass/main_big.png"><p>官方版本KeePass</p><ol><li><h3 id="开始使用"><a href="#开始使用" class="headerlink" title="开始使用"></a>开始使用</h3><p>开始试着把以前的密码数据导出后，开始试着转移密码到这个新的解决方案的载体时，官方提供的各平台版本，其实在交互上及实用性上都确认不及<code>1Password</code>所带出的基本功能，各平台间交互差异大，且直接无浏览器扩展的支持，有的也只是已从谷歌官方应用扩展商店下架后，博主间传出的离线版本了；所以还真有点想放弃，老实交钱用回<code>1Password</code>了。</p><blockquote><p>就在我准备放弃前，多搜索了一次。我拥抱了开源</p></blockquote></li><li><h3 id="发现宝藏"><a href="#发现宝藏" class="headerlink" title="发现宝藏"></a>发现宝藏</h3><p>在一次无意的搜索中，我发现了这款基于<code>KeePass</code>开发的第三方全平台支持的软件版本</p><a target="_blank" href="https://keepassxc.org/"><center><img src="/202011/recommend-keepass/keepassxc-logo.svg" width="100"></center><center style="color:#30782f">KeePassXC</center></a><p>一起先看看的截图</p><img src="/202011/recommend-keepass/welcome_screen.png"><img src="/202011/recommend-keepass/database_view.png"></li></ol><blockquote><a href="/202011/keepassxc-tutorials/" title="KeePassXC 简易教程">KeePassXC 简易教程</a></blockquote>]]></content>
+      
+      
+      <categories>
+          
+          <category> 软件分享 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 软件分享 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>雪碧图命令行工具开发完结撒花</title>
+      <link href="202011/sprites-cli-develop/"/>
+      <url>202011/sprites-cli-develop/</url>
+      
+        <content type="html"><![CDATA[<img src="/202011/sprites-cli-develop/cover.png" width="0" height="0"><h2 id="小图的烦恼"><a href="#小图的烦恼" class="headerlink" title="小图的烦恼"></a>小图的烦恼</h2><p>项目中经常有不可避免的出现小图标，雪碧图依然是很多团队的选择，网上也有了各种种样的雪碧图插件或方案等。但大多数仅仅实现了简易的拼图及规则生成，我在项目中常常遇到两个小图需要在用户交互时切换等甚至更为复杂的需求；终于在百忙<del>懒癌</del>之中搞了一个生成雪碧图的命令行小工具，望大家参考指教。</p><p><a href="https://github.com/hiyoz/sprites-cli" target="_blank" rel="noopener">传送门</a></p><h2 id="快速上手"><a href="#快速上手" class="headerlink" title="快速上手"></a>快速上手</h2><ul><li><h3 id="安装与使用"><a href="#安装与使用" class="headerlink" title="安装与使用"></a>安装与使用</h3></li></ul><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs bash">npm install @hiyoz/sprite-cli -g<br><br>sprites-cli [options]<br><br>通过命令对指定目录下的所有结尾 -sprite 结束的雪碧图文件夹，生成雪碧图到指定的生成目录，并生成雪碧图的对应样式文件。支持不同文件夹自定义CSS样式<br><br>Options:<br>  -s, --scope [value]  [必填]设定范围目录，范围目录下所有结尾 -sprite 结束的雪碧图文件夹<br>  -r, --rule [value]   生成sheet规则版本: css less scss stylus，默认使用css若 优先使用雪碧图文件夹下有 template.js 生成规则脚本<br>  -d, --dist [value]   生成目录[范围目录的相对路径]，默认 <span class="hljs-string">"./"</span><br></code></pre></td></tr></table></figure><ul><li><h3 id="基础使用示例"><a href="#基础使用示例" class="headerlink" title="基础使用示例"></a>基础使用示例</h3><p>  <code>demo</code>目录下<code>galaxy-sprite</code>存储了等待合成的雪碧图原料。希望生成stylus的CSS规则文件</p>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">sprites-cli -s demo -r stylus<br></code></pre></td></tr></table></figure><p>  通过命令即可在demo目录下生成galaxy-sprite.styl与galaxy-sprite.png文件。</p></li><li><h3 id="自定义样式生成"><a href="#自定义样式生成" class="headerlink" title="自定义样式生成"></a>自定义样式生成</h3><p>  部分雪碧图在使用时希望支持一定的交互效果，如：某图标在移过去时变换成另一个图标时；即可通过自定义样式生成的方案，在自定义生成符合需求的CSS规则。</p><p>  仅需将在 相应的雪碧图文件夹内 如：<code>galaxy-sprite</code>文件夹下，创建<code>template.js</code>文件，代码如下：</p><blockquote><p>当雪碧图文件夹下存在<code>template.js</code>时，该雪碧图文件夹的CSS规则生成仅以此为唯一的生成规则</p></blockquote><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-built_in">module</span>.exports = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">spritesheet</span>) </span>&#123;<br>  <span class="hljs-keyword">let</span> spritesCSS = <span class="hljs-string">``</span>;<br>  <span class="hljs-keyword">if</span> (<span class="hljs-built_in">Array</span>.isArray(spritesheet.sprites)) &#123;<br>    spritesCSS = spritesheet.sprites<br>      .map(<span class="hljs-function">(<span class="hljs-params">sprite</span>) =&gt;</span> &#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-string">`<br>          &amp;-<span class="hljs-subst">$&#123;sprite.name&#125;</span> &#123;<br>            background-position: <span class="hljs-subst">$&#123;sprite.x&#125;</span>px <span class="hljs-subst">$&#123;sprite.y&#125;</span>px;<br>            width: <span class="hljs-subst">$&#123;sprite.width&#125;</span>px;<br>            height: <span class="hljs-subst">$&#123;sprite.height&#125;</span>px;<br>          &#125;<br>        `</span>;<br>      &#125;)<br>      .join(<span class="hljs-string">""</span>);<br>  &#125;<br>  <span class="hljs-keyword">let</span> mainCSS = <span class="hljs-string">`<br>    @spriteName: "<span class="hljs-subst">$&#123;spritesheet.name&#125;</span>"<br>    .@&#123;spriteName&#125;&#123;<br>      display:inline-block;<br>      vertical-align: middle;<br>      background-image: url(<span class="hljs-subst">$&#123;spritesheet.image&#125;</span>);<br>      background-size: <span class="hljs-subst">$&#123;spritesheet.width&#125;</span>px <span class="hljs-subst">$&#123;spritesheet.height&#125;</span>px;<br>      <span class="hljs-subst">$&#123;spritesCSS&#125;</span><br>    &#125;<br>  `</span>;<br>  <span class="hljs-keyword">return</span> [mainCSS, <span class="hljs-string">"styl"</span>];<span class="hljs-comment">//返回样式规则文本和文件后缀名</span><br>&#125;;<br></code></pre></td></tr></table></figure><p>  这样就可以通过自由的改变逻辑完成多变的需求啦。</p></li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> 解决方案 </category>
+          
+          <category> WEB开发 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> nodejs </tag>
+            
+            <tag> 工具 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>rem响应式网站适配解决方案</title>
+      <link href="202011/web-rem-resolve/"/>
+      <url>202011/web-rem-resolve/</url>
+      
+        <content type="html"><![CDATA[<img src="/202011/web-rem-resolve/cover.png" width="0" height="0"><h2 id="REM是什么"><a href="#REM是什么" class="headerlink" title="REM是什么"></a>REM是什么</h2><blockquote><p>本文属REM方案的进阶思考，阅读者默认已了解REM方案的原理</p></blockquote><ul><li>搜 <a href="https://www.google.com/search?q=rem+%E6%96%B9%E6%A1%88" target="_blank" rel="noopener">Google</a></li><li>搜 <a href="https://www.baidu.com/s?w=rem+%E6%96%B9%E6%A1%88" target="_blank" rel="noopener">百度</a></li></ul><h2 id="常见的解决方案"><a href="#常见的解决方案" class="headerlink" title="常见的解决方案"></a>常见的解决方案</h2><ul><li><strong>IDE 插件进行直接转换</strong><ul><li>优点：装好即用</li><li>缺点：不易维护，且大部分情况下无法团队协同，直接修改了源码的数值单位，且一般使用 1rem = 16px 的方案，导致被转换后小数点太多，再次修改时不直观</li></ul></li><li><strong>WebPack Plugin或Loader转换</strong><ul><li>优点：相较于IDE易于团队协作，仅需配置即可直接使用</li><li>缺点：不太支持响应式设置</li></ul></li></ul><h2 id="REM-解决方案"><a href="#REM-解决方案" class="headerlink" title="REM 解决方案"></a>REM 解决方案</h2><h3 id="方案"><a href="#方案" class="headerlink" title="方案"></a>方案</h3><blockquote><p>以需开发 <em>PC端</em> 和 <em>手机端</em> 的响应式项目为例</p></blockquote><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs javascript">(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>&#123;<br>  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">recal</span>(<span class="hljs-params"></span>) </span>&#123;<br>    <span class="hljs-keyword">let</span> docElement = <span class="hljs-built_in">document</span>.documentElement || <span class="hljs-built_in">document</span>.body;<br>    <br>    <span class="hljs-comment">// #region 可根据响应式需求自由调整逻辑</span><br>    <span class="hljs-keyword">let</span> clientWidth = docElement.clientWidth,<br>      designWidth = <span class="hljs-number">1200</span>; <span class="hljs-comment">//PC端设计稿宽度（主内容区域）</span><br><br>    <span class="hljs-keyword">if</span> (clientWidth &lt; <span class="hljs-number">750</span>) &#123; <span class="hljs-comment">// 客户端屏幕宽度小于一定尺寸时</span><br>      designWidth = <span class="hljs-number">640</span>; <span class="hljs-comment">//转为移动端设计稿宽度</span><br><br>    &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (clientWidth &lt; designWidth) &#123;<span class="hljs-comment">// 客户端屏幕宽度小于PC端设计稿时</span><br>      clientWidth -= <span class="hljs-number">80</span> <br>      <span class="hljs-comment">//解决在750~1200左右单独设计的情况，让内容主体与浏览器有空隙</span><br><br>    &#125; <span class="hljs-keyword">else</span> &#123; <span class="hljs-comment">//否则直接应用PC端设计稿宽度</span><br>      clientWidth = designWidth;<br>    &#125;<br>    <span class="hljs-comment">// #region </span><br>    docElement.style.fontSize = (clientWidth / designWidth) * <span class="hljs-number">100</span> + <span class="hljs-string">"px"</span>;<br>  &#125;<br>  <span class="hljs-built_in">window</span>.addEventListener(<span class="hljs-string">"resize"</span>, recal);<br>  recal();<br>&#125;)();<br></code></pre></td></tr></table></figure><p><strong>将js代码放在 <code>&lt;head&gt;</code> 内，且不依赖任何插件以保证他最早被执行。</strong></p><p>使用css预处理器编写函数(我这边用的是stylus)</p><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs styl">ptr(px)&#123;<br>  return unit((px / 100), 'rem');<br>&#125;<br><br>body&#123;<br>  font-size: ptr(12)<br>&#125;<br><br>// 使用方法<br>.container&#123;<br>  width: ptr(1200);<br>&#125;<br></code></pre></td></tr></table></figure><h3 id="主要思路"><a href="#主要思路" class="headerlink" title="主要思路"></a>主要思路</h3><p>  通过响应式设计稿尺寸不一的情况下，通过 <code>窗口宽度</code> 变化时判断选用不同端的 <code>设计稿宽度</code> 运算，辅以 <code>css3</code> 的 <code>media</code> 即可完美复现响应式下的设计啦</p><p>  通过 css预处理器的function功能，对单位直接运算，这样就可以愉快的直接将设计稿取到的值直接写入到 <code>ptr(value)</code> 中完成复现。</p><blockquote><p>记一次使用 css预处理 ptr函数 的奇妙经历：当你因某些原因更换方案时，可直接重写 ptr函数 的 运算方式 达到一步到位的维护效果</p></blockquote>]]></content>
+      
+      
+      <categories>
+          
+          <category> 解决方案 </category>
+          
+          <category> WEB开发 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> web </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+  
+  
+</search>
