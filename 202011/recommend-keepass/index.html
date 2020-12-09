@@ -1,0 +1,213 @@
+ 
+ 
+ 
+ 
+
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="UTF-8">
+    <title>安利一款免费好用的开源密码管理软件 - KeePassXC KwokRonny&#39;Blog</title>
+    
+      <meta name="keywords" content="blog,博客">
+    
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
+    
+  <script>
+  var _hmt = _hmt || [];
+  (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?4d6e19a6b912c9a6fa8747ac32a4e5df";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+  })();
+  </script>
+
+
+    
+      <!-- stylesheets list from _config.yml -->
+      
+        <link rel="stylesheet" href="//at.alicdn.com/t/font_2236624_69rc9okdrcb.css">
+      
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css">
+      
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css">
+       
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/kwokronny/kwokronny.github.io@latest/css/index.css">
+    
+  </head>
+  <body>
+    <div class="header">
+      <div class="nav-btn"><span class="lt"><i></i></span><span class="lb"><i></i></span></div>
+      <a href="/" class="logo">
+        KwokRonny&#39;Blog
+      </a>
+      <div class="nav">
+         
+          
+            <div class="nav-item">
+              <a class="hover" href="/archives"><i class="fa fa-archive"></i> 文章</a>
+            </div>
+           
+       
+          
+            <div class="nav-item">
+              <a href="#" class="hover"><i class="fa fa-inbox"></i> 分类</a>
+              <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/解决方案/"><i class="fa fa-folder-open"></i> 解决方案</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/解决方案/WEB开发/"><i class="fa fa-folder-open"></i> WEB开发</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/软件分享/"><i class="fa fa-folder-open"></i> 软件分享</a></li></ul>
+            </div>
+           
+       
+          
+            <div class="nav-item">
+              <a href="#" class="hover"><i class="fa fa-tag"></i> 标签</a>
+              <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/nodejs/"><i class="fa fa-tag"></i> nodejs</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/web/"><i class="fa fa-tag"></i> web</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/工具/"><i class="fa fa-tag"></i> 工具</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/软件分享/"><i class="fa fa-tag"></i> 软件分享</a></li></ul>
+            </div>
+           
+       
+          
+            <div class="nav-item">
+              <a class="hover" href="https://github.com/kwokronny"><i class="fa fa-github-alt"></i> 开源</a>
+            </div>
+           
+      
+      </div>
+    </div>
+    <div class="warning-zone"></div>
+    <div class="warning-zone right"></div>
+    <div class="container-mask"></div>
+    <div class="bg-canvas">
+      <div class="switch-action">
+        <label class="hvr-push">
+          <input type="checkbox" name="rotate">
+          <i class="iconfont icon-rotate3d"></i>
+        </label>
+        <label class="hvr-push">
+          <input type="radio" value="walk" name="action">
+          <i class="iconfont icon-walk"></i>
+        </label>
+        <label class="hvr-push">
+          <input type="radio" value="idle" checked name="action">
+          <i class="iconfont icon-idle"></i>
+        </label>
+        <label class="hvr-push">
+          <input type="radio" value="push_up" name="action">
+          <i class="iconfont icon-push_up"></i>
+        </label>
+      </div>
+    </div>
+    <div class="main-container">
+      <div id="content-outer">
+        <div id="content-inner"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets@10.4.0/styles/dracula.min.css">
+<div class="left-panel">
+  <!-- <div class="recent-post panel">
+    <h3>最新文章</h3>
+    <ol>
+    
+      <li title="KeePassXC 简易教程"><a href="/202011/keepassxc-tutorials/"><span class="date">11-24</span>KeePassXC 简易教程</a></li>
+    
+      <li title="安利一款免费好用的开源密码管理软件 - KeePassXC"><a href="/202011/recommend-keepass/"><span class="date">11-23</span>安利一款免费好用的开源密码管理软件 - KeePassXC</a></li>
+    
+      <li title="雪碧图命令行工具开发完结撒花"><a href="/202011/sprites-cli-develop/"><span class="date">11-20</span>雪碧图命令行工具开发完结撒花</a></li>
+    
+      <li title="rem响应式网站适配解决方案"><a href="/202011/web-rem-resolve/"><span class="date">11-19</span>rem响应式网站适配解决方案</a></li>
+    
+    </ol>
+  </div> -->
+  <div class="article-menu panel">
+    <h3>目录</h3>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#用过的密码管理软件"><span class="toc-text">用过的密码管理软件</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#级别密码制"><span class="toc-text">级别密码制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#lastpass"><span class="toc-text">lastpass</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1Password"><span class="toc-text">1Password</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#正式安利-KeePass"><span class="toc-text">正式安利 - KeePass</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#开始使用"><span class="toc-text">开始使用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#发现宝藏"><span class="toc-text">发现宝藏</span></a></li></ol></li></ol>
+  </div>
+</div>
+<article id="post">
+  <h1 class="title">安利一款免费好用的开源密码管理软件 - KeePassXC</h1>
+  <small class="description">
+    <span class="date"><i class="fa fa-calendar"></i> 2020年11月23日</span>
+    <span>
+      <i class="fa fa-inbox"></i>
+      <a class="category-link" href="/categories/软件分享/">软件分享</a>
+    </span>
+    <span>
+      <i class="fa fa-tag"></i>
+      <a class="tag-link" href="/tags/软件分享/">软件分享</a>
+    </span>
+  </small>
+  <img src="/202011/recommend-keepass/cover.png" width="0" height="0">
+
+<h2 id="用过的密码管理软件"><a href="#用过的密码管理软件" class="headerlink" title="用过的密码管理软件"></a>用过的密码管理软件</h2><p>推荐前先介绍自己在密码管理上经历过的历程，无兴趣可直接跳过这一段</p>
+<ol>
+<li><h3 id="级别密码制"><a href="#级别密码制" class="headerlink" title="级别密码制"></a>级别密码制</h3><p>统一三个级别的密码，分为：无隐私风险，轻隐私风险，重度隐私风险的密码，密码复杂度按级别升高。方便，只用记三个密码即可尽可能的保护自己的隐私和方便自己的记忆。</p>
+</li>
+<li><h3 id="lastpass"><a href="#lastpass" class="headerlink" title="lastpass"></a>lastpass</h3><p><code>超能小紫</code>最早推荐我用的密码管理的CHORME扩展，后来也因为曝出过相关的密码泄漏新闻，所以就试着找个安全些的。</p>
+</li>
+<li><h3 id="1Password"><a href="#1Password" class="headerlink" title="1Password"></a>1Password</h3><p>同样是<code>超能小紫</code>给我安利的，刚好试着免费试用1年，试用了几个月，个人在使用上感觉在交互还是不太喜爱，各平台的操作相对不统一，密码生成、删除，修改等操作上有些麻烦，特别是我在新平台注册活登陆时不会自动收集我的信息询问我是否存储，不知是不是我没配置好；这样想想订阅费用还是让我稍稍心痛的。</p>
+</li>
+</ol>
+<h2 id="正式安利-KeePass"><a href="#正式安利-KeePass" class="headerlink" title="正式安利 - KeePass"></a>正式安利 - KeePass</h2><p>KeePass起初真只是抱着试试的心态，毕竟大概如果有了解的话，KeePass的相关官网包括网上许多的使用文档中的软件截图，界面风格跟2000年基本无异了；我主要电脑是MacBook的，一开始还真没打算用这套全平台解决方案，想着再找找，但突然认真看了下网站，发现开源的项目，都有着伟大的开源精神的程序员圈子，一个平台出现了三四种基于keepass的第三方版本及各种原生插件。</p>
+<img src="/202011/recommend-keepass/main_big.png">
+
+<p>官方版本KeePass</p>
+<ol>
+<li><h3 id="开始使用"><a href="#开始使用" class="headerlink" title="开始使用"></a>开始使用</h3><p>开始试着把以前的密码数据导出后，开始试着转移密码到这个新的解决方案的载体时，官方提供的各平台版本，其实在交互上及实用性上都确认不及<code>1Password</code>所带出的基本功能，各平台间交互差异大，且直接无浏览器扩展的支持，有的也只是已从谷歌官方应用扩展商店下架后，博主间传出的离线版本了；所以还真有点想放弃，老实交钱用回<code>1Password</code>了。</p>
+<blockquote>
+<p>就在我准备放弃前，多搜索了一次。我拥抱了开源</p>
+</blockquote>
+</li>
+<li><h3 id="发现宝藏"><a href="#发现宝藏" class="headerlink" title="发现宝藏"></a>发现宝藏</h3><p>在一次无意的搜索中，我发现了这款基于<code>KeePass</code>开发的第三方全平台支持的软件版本</p>
+<a target="_blank" href="https://keepassxc.org/">
+<center>
+<img src="/202011/recommend-keepass/keepassxc-logo.svg" width="100">
+</center>
+<center style="color:#30782f">
+KeePassXC
+</center>
+</a>
+
+<p>一起先看看的截图</p>
+<img src="/202011/recommend-keepass/welcome_screen.png">
+<img src="/202011/recommend-keepass/database_view.png">
+
+</li>
+</ol>
+<blockquote>
+<a href="/202011/keepassxc-tutorials/" title="KeePassXC 简易教程">KeePassXC 简易教程</a></blockquote>
+
+  <div class="donate-panel">
+	<label><input type="checkbox"><i class="fa fa-qrcode"></i> 打赏</label>
+	如果觉得我的文章对您有用，请随意打赏。您的支持将鼓励我继续创作! 
+	<div class="donate-code">
+		<img src="/img/wechat_pay.jpg">
+		<img src="/img/alipay.jpg">
+	</div>
+</div>
+<script type="text/javascript">
+	document.querySelector(".donate-panel input").addEventListener("change",function(){
+		document.querySelector(".donate-code").classList.toggle("show")
+	})
+</script>
+  <div class="utterances" id="comment-container"></div>
+<script src="https://utteranc.es/client.js" repo="kwokronny/kwokronny.github.io" issue-term="41dba2b4cbcf8c4949f8c09f7ccc5c98" theme="github-dark" crossorigin="anonymous" async>
+</script>
+</article></div>
+      </div>
+    </div>
+    <div class="footer">
+      Power by <a href="http://hexo.io">hexo</a>. | 3D Model Thx SketchFab: <a href="https://sketchfab.com/Blender3D">Blender3D</a>, <a href="https://sketchfab.com/arexon">Arexon</a>
+    </div>
+    
+      <!-- scripts list from theme config.yml -->
+      
+          <script src="https://cdn.jsdelivr.net/gh/kwokronny/kwokronny.github.io@latest/js/three/three.min.js"></script>
+      
+          <script src="https://cdn.jsdelivr.net/gh/kwokronny/kwokronny.github.io@latest/js/three/GLTFLoader.min.js"></script>
+      
+          <script src="https://cdn.jsdelivr.net/gh/kwokronny/kwokronny.github.io@latest/js/three/OrbitControls.min.js"></script>
+      
+          <script src="https://cdn.jsdelivr.net/gh/kwokronny/kwokronny.github.io@latest/js/index.js"></script>
+      
+          <script src="https://cdn.jsdelivr.net/gh/kwokronny/kwokronny.github.io@latest/js/minecraft.js"></script>
+       
+     
+  </body>
+</html>
