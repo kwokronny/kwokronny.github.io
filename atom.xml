@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>KwokRonny&#39;Blog</title>
+  
+  
+  <link href="https://kwokronny.top/atom.xml" rel="self"/>
+  
+  <link href="https://kwokronny.top/"/>
+  <updated>2021-01-14T10:46:56.069Z</updated>
+  <id>https://kwokronny.top/</id>
+  
+  <author>
+    <name>Kwok Ronny</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>朋友安利的一款轻量级docker容器可视化管理</title>
+    <link href="https://kwokronny.top/202101/recommend-portainer/"/>
+    <id>https://kwokronny.top/202101/recommend-portainer/</id>
+    <published>2021-01-14T14:14:35.000Z</published>
+    <updated>2021-01-14T10:46:56.069Z</updated>
+    
+    <content type="html"><![CDATA[<img src="/202101/recommend-portainer/cover.png" class="" width="0" height="0"><p>刚开始玩docker及linux玩的少我来说，有可视化的Docker管理工具真的不要太香了。</p><img src="/202101/recommend-portainer/portainer.png" class=""><h1 id="安装并运行-portainer-镜像"><a href="#安装并运行-portainer-镜像" class="headerlink" title="安装并运行 portainer 镜像"></a>安装并运行 portainer 镜像</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 拉取portainer镜像</span><br>docker pull docker pull portainer/portainer-ce<br><span class="hljs-comment"># 创建 portainer_data docker volume目录</span><br>docker volume create portainer_data<br><span class="hljs-comment"># 创建运行portainer容器</span><br>docker run -d -p 8000:8000 -p 9000:9000 --name=portainer --restart=always -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer-ce<br><span class="hljs-comment"># -d 后台运行</span><br><span class="hljs-comment"># -p 映射8000与9000的端口</span><br><span class="hljs-comment"># --name 容器名称</span><br><span class="hljs-comment"># --restart=always docker重启时自动启动容器</span><br><span class="hljs-comment"># -v 映射本地docker.sock 及 新创建的portainer_data volume目录</span><br></code></pre></td></tr></table></figure><h1 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h1><p>安装完成后，通过 <a href="http://ip:9000/">http://ip:9000/</a> 即可访问，设置服务的用户名密码后</p><img src="/202101/recommend-portainer/set_user.png" class=""><p>前面的映射中已将docker.sock映射了，所以我们直接选择 <code>Local</code> 后 <code>connect</code> 就可以直接享用啦</p><img src="/202101/recommend-portainer/bind_docker_sock.png" class="">]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;img src=&quot;/202101/recommend-portainer/cover.png&quot; class=&quot;&quot; width=&quot;0&quot; height=&quot;0&quot;&gt;
+
+&lt;p&gt;刚开始玩docker及linux玩的少我来说，有可视化的Docker管理工具真的不要太香了。&lt;/p&gt;
+&lt;img </summary>
+      
+    
+    
+    
+    <category term="docker" scheme="https://kwokronny.top/categories/docker/"/>
+    
+    
+    <category term="docker" scheme="https://kwokronny.top/tags/docker/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Docker部署GitLab实例</title>
+    <link href="https://kwokronny.top/202101/docker-gitlab/"/>
+    <id>https://kwokronny.top/202101/docker-gitlab/</id>
+    <published>2021-01-14T11:22:34.000Z</published>
+    <updated>2021-01-14T10:46:56.069Z</updated>
+    
+    <content type="html"><![CDATA[<img src="/202101/docker-gitlab/cover.png" class="" width="0" height="0"><h1 id="啰哩啰嗦"><a href="#啰哩啰嗦" class="headerlink" title="啰哩啰嗦"></a>啰哩啰嗦</h1><p>玩上 docker 后，开始热衷于在上面架设各种服务来玩。就想着搞个 gitlab 来玩玩好了。不过我朋友也劝我没必要，因为我们个人的容灾手段还是有限的，为此，我机智的想到一招，直接镜像到 github 或者是 coding 之类的 git 平台，这样就不怕万一真出现了的数据灾难啦。<br>毕竟技术无国界还是要分情况的，github封禁伊朗籍的账户的事件还是值得警惕，虽说我个小人物，但我还是不想万一需要迁移的麻烦事；代码放在自己的物理硬盘的手段还是必要的。</p><p>这篇文章主要<del>水的</del>原因在于我直接安装配置完gitlab后，遇到的几个迷之问题，与解决方案。</p><ul><li><p>发现gitlab页面中部分链接总是会跳到无端口的页面中，自然也就是404了，甚至不知如何搜这个问题，在莫名的契机下，找到了解决方案，其实也是个很基础的配置问题。</p><blockquote><p><a href="https://segmentfault.com/a/1190000021229534">通过 Docker 快速部署公司内部 GitLab</a></p></blockquote></li><li><p>可能是我安装的gitlab版本问题，我的gitlab还没多少项目存放，每天却按 1G 以上的大小占用了我的硬盘，GITLAB是架设在本地机子中的 VM虚拟机的 ，暂时没空解决这个问题，就只好先对虚拟机扩容了。</p><blockquote><p>抽空后，发现gitlab应该下的prometheus文件夹大到爆炸，通过查询prometheus的必要性后，我对其直接停用处理了。</p></blockquote></li></ul><h1 id="安装并运行-gitlab-镜像"><a href="#安装并运行-gitlab-镜像" class="headerlink" title="安装并运行 gitlab 镜像"></a>安装并运行 gitlab 镜像</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 拉取gitlab镜像</span><br>docker pull gitlab/gitlab-ce<br><br><span class="hljs-comment"># 为 gitlab 创建 2 个docker volume目录： gitlab_data 和 gitlab_config</span><br>docker volume create gitlab_data<br>docker volume create gitlab_config<br><br><span class="hljs-comment"># 个人是私用的gitlab，所以端口之类自然也不可以直接用gitlab默认的。</span><br>docker run -d  -p 8443:443 -p 3300:80 -p 1011:22 --name gitlab --restart always -v gitlab_config:/etc/gitlab -v gitlab_data:/var/opt/gitlab gitlab/gitlab-ce<br><span class="hljs-comment"># -d 后台运行</span><br><span class="hljs-comment"># -p [映射端口]:[容器端口]</span><br><span class="hljs-comment"># --name 容器名称</span><br><span class="hljs-comment"># --restart=always docker重启时自动启动容器</span><br><span class="hljs-comment"># -v 映射gitlab_data和gitlab_config volume目录</span><br></code></pre></td></tr></table></figure><h1 id="配置gitlab-rb"><a href="#配置gitlab-rb" class="headerlink" title="配置gitlab.rb"></a>配置gitlab.rb</h1><p>gitlab容器运行没问题后，在gitlab上创建项目的时候，生成项目的URL访问地址是按容器的hostname来生成的，所以也就无法正常的克隆、拉取、提交了。我们还需要更新一下配置后重启gitlab</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 通过直接进入挂载文件夹修改</span><br>vim &#123;volumn_dir&#125;/gitlab_data/_data/gitlab.rb<br><br><span class="hljs-comment"># 进入容器修改</span><br>docker <span class="hljs-built_in">exec</span> -it gitlab bash<br>vim /etc/gitlab/gitlab.rb<br></code></pre></td></tr></table></figure><blockquote><p>小提示（会VIM的略过吧）：<br>按下 <code>/ 键</code> 并输入要搜索的字符后 <code>回车键</code>，<code>n 键</code> 查看下一条 <code>shift + n 键</code> 查看上一条<br>按下 <code>i 键</code> 进入编辑模式，编辑完成后 <code>Esc 键</code> 退出编辑模式<br>非编辑模式下 输入 :wq 保存文档</p></blockquote><figure class="highlight bash"><figcaption><span>gitlab.rb</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 修改如下语句</span><br>external_url <span class="hljs-string">&#x27;http://[ip/hostname]:3300&#x27;</span><br><br><span class="hljs-comment"># nginx默认会去external_url中获取端口用以访问，但我们窗口只映射了80，所以还需要nginx指向的端口到80</span><br>nginx[<span class="hljs-string">&#x27;listen_port&#x27;</span>] = 80<br><span class="hljs-comment"># https需要下面这句</span><br><span class="hljs-comment"># nginx[&#x27;redirect_http_to_https_port&#x27;] = 443</span><br><br><span class="hljs-comment"># 配置 1011 端口</span><br>gitlab_rails[<span class="hljs-string">&#x27;gitlab_shell_ssh_port&#x27;</span>] = 1011<br><span class="hljs-comment"># 停用prometheus</span><br>prometheus_monitoring[<span class="hljs-string">&#x27;enable&#x27;</span>] = <span class="hljs-literal">false</span><br></code></pre></td></tr></table></figure><p>按上述修改完成后 重启gitlab就可以啦</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">docker restart gitlab<br></code></pre></td></tr></table></figure><p>以上基本gitlab的访问配置就完成了。接下来就自行访问可视化配置进行配置吧。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;img src=&quot;/202101/docker-gitlab/cover.png&quot; class=&quot;&quot; width=&quot;0&quot; height=&quot;0&quot;&gt;
+
+&lt;h1 id=&quot;啰哩啰嗦&quot;&gt;&lt;a href=&quot;#啰哩啰嗦&quot; class=&quot;headerlink&quot; title=&quot;啰哩啰嗦&quot;&gt;&lt;/a</summary>
+      
+    
+    
+    
+    <category term="docker" scheme="https://kwokronny.top/categories/docker/"/>
+    
+    
+    <category term="docker" scheme="https://kwokronny.top/tags/docker/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>stylus-shortcut 加速编写 CSS</title>
+    <link href="https://kwokronny.top/202012/stylus-shortcut/"/>
+    <id>https://kwokronny.top/202012/stylus-shortcut/</id>
+    <published>2020-12-25T15:50:53.000Z</published>
+    <updated>2021-01-14T10:46:56.073Z</updated>
+    
+    <content type="html"><![CDATA[<img src="/202012/stylus-shortcut/cover.png" class="" width="0" height="0"><p>stylus-shortcut 可以加速编写 CSS，通过 stylus 中 mixin 的功能，将样式常用组合合并汇以简单一句，减少代码的编写量；并通过 stylus 循环将常用主题变量生成常用的样式规则，可快捷使用。</p><ul><li><strong><a href="https://kwokronny.top/stylus-shortcut-document/">说明文档</a></strong></li><li><strong><a href="https://github.com/hiyoz/stylus-shortcut">项目仓库</a></strong></li></ul><h2 id="开发意图"><a href="#开发意图" class="headerlink" title="开发意图"></a>开发意图</h2><p>编写这个项目最初的目的是在开发一 SAAS 平台时，我已采用 iviewUI 的基础上进行开发，并通过自定义主题覆盖了部分样式及颜色变量后。常常需要在部分元素上为元素命名后仅仅为其加一项间距属性或文本颜色等简单的样式。来回切换样式文件与 DOM 文件，及为不重要的小元素命名，多而烦；或许这也是为什么 Bootstrap 可以一下成为大家热爱的库吧。</p><p>所以我简单通过 stylus 的循环按设计规范中常用的间距生成了多个间距样式及颜色样式，真的非常的方便与快落；事实证明频繁的切换文件是容易忘记自己需要做什么的。<br>再之后，为一些复杂的设计编写样式时，常常在写完 width 时基本下一句可能就是 height，嗒嗒嗒下来，写了许多行，但常常这些伴随着规律，定位时会写 left,top、宽高写完时可能还会再设置个圆角等，写了几年前端后早已厌烦了长长的样式规则。<br>所以我通过 stylus 的 mixin 功能，将编写 CSS 时常用的规律汇成一句，小小的功能，也可以提升大大的效率。<br>编写文档时，也常问自己项目如此的小，是否需要变成一个库呢？我找到了答案，小而简就是这个项目的初心，他解决的是开发中常常忽视的小烦恼，整理出规律增加编写效率也是这个小项目最重要的核心<br>如果你也同我一样存在这些厌烦，不妨试试这个库哟~</p><h2 id="特性"><a href="#特性" class="headerlink" title="特性"></a>特性</h2><ul><li>通过 stylus 的特性整理开发的一套加速样式编写的解决方案</li><li>可快速将设计中常用的规范转化为变量生成常用的样式</li><li>命名规则应用尊循 BEM</li><li>小而美，只解决常见但小的麻烦</li></ul><h2 id="使用方式"><a href="#使用方式" class="headerlink" title="使用方式"></a>使用方式</h2><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs stylus">@import <span class="hljs-string">&quot;your-custom-variable-file.styl&quot;</span> <span class="hljs-comment">//引入自定义变量</span><br><span class="hljs-comment">// 同时引入 shortcut.styl mixin.styl</span><br>@import <span class="hljs-string">&quot;~@hiyoz/stylus-shortcut&quot;</span><br><span class="hljs-comment">// or 单独引入 shortcut.styl</span><br>@import <span class="hljs-string">&quot;~@hiyoz/stylus-shortcut/src/shortcut.styl</span><br><span class="hljs-string">// or 单独引入 mixin.styl</span><br><span class="hljs-string">@import &quot;</span>~@hiyoz/stylus-shortcut/src/mixin.styl<br></code></pre></td></tr></table></figure><blockquote><p>变量与mixin需要在多文件下自动引用可通过stylus-loader<br>如 vue-cli@3 配置示例，在 stylus-loader 中配置 import 全局引入</p></blockquote><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">//vue.config.js</span><br>modules.export=&#123;<br>  ...<br>  css: &#123;<br>    <span class="hljs-comment">// 配置css模块</span><br>    loaderOptions: &#123;<br>      <span class="hljs-comment">// 向预处理器 Loader 传递配置选项</span><br>      stylus: &#123;<br>        <span class="hljs-keyword">import</span>: [<br>          <span class="hljs-string">&quot;your-custom-variable-file.styl&quot;</span>,<br>          <span class="hljs-string">&quot;@hiyoz/stylus-shortcut/src/mixin.styl&quot;</span><br>        ]<br>      &#125;<br>    &#125;<br>  &#125;<br>  ...<br>&#125;<br></code></pre></td></tr></table></figure><h2 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs variable.styl">yoz_color &#x3D; &#123;<br>  primary: #1890ff,<br>  link: #1890ff,<br>  success: #52c41a,<br>  warning: #faad14,<br>  error: #f5222d<br>&#125;;<br>yoz_spacing ?&#x3D; &#123;<br>  &#39;5&#39;: 5px,<br>  &#39;10&#39;: 10px,<br>  &#39;20&#39;: 20px,<br>  &#39;30&#39;: 30px<br>&#125;;<br>...<br></code></pre></td></tr></table></figure><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;flex-h&quot;</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;text-c_primary&quot;</span>&gt;</span>文本颜色primary<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>  <span class="hljs-comment">&lt;!--文本颜色为变量值primary--&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;box bg-c_primary spac-ml_20&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>  <span class="hljs-comment">&lt;!--背景颜色为primary--&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;box bg-c_primary spac-mh_20&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>  <span class="hljs-comment">&lt;!--水平外间距--&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;box bg-c_primary spac-p_20&quot;</span>&gt;</span>内间距<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>  <span class="hljs-comment">&lt;!--四边内间距--&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br></code></pre></td></tr></table></figure>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;img src=&quot;/202012/stylus-shortcut/cover.png&quot; class=&quot;&quot; width=&quot;0&quot; height=&quot;0&quot;&gt;
+
+&lt;p&gt;stylus-shortcut 可以加速编写 CSS，通过 stylus 中 mixin 的功能，将样式常用组合合并汇以</summary>
+      
+    
+    
+    
+    <category term="解决方案" scheme="https://kwokronny.top/categories/%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/"/>
+    
+    <category term="WEB开发" scheme="https://kwokronny.top/categories/%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/WEB%E5%BC%80%E5%8F%91/"/>
+    
+    
+    <category term="stylus" scheme="https://kwokronny.top/tags/stylus/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>CSS预处理哪家强？</title>
+    <link href="https://kwokronny.top/202012/css-pre-handler/"/>
+    <id>https://kwokronny.top/202012/css-pre-handler/</id>
+    <published>2020-12-25T15:46:33.000Z</published>
+    <updated>2021-01-14T10:46:56.069Z</updated>
+    
+    <content type="html"><![CDATA[<img src="/202012/css-pre-handler/cover.png" class="" width="0" height="0"><h1 id="不想再回到的CSS时代"><a href="#不想再回到的CSS时代" class="headerlink" title="不想再回到的CSS时代"></a>不想再回到的CSS时代</h1><p>刚学前端时，各预处理软件还没出现，犹记得当时写的最好的 CSS格式是这样</p><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-class">.panel</span>&#123; <span class="hljs-attribute">width</span>: <span class="hljs-number">100%</span>; <span class="hljs-attribute">height</span>:<span class="hljs-number">800px</span>; <span class="hljs-attribute">margin</span>: <span class="hljs-number">30px</span> &#125;<br><span class="hljs-selector-class">.panel</span> <span class="hljs-selector-class">.panel-title</span>&#123; <span class="hljs-attribute">font-size</span>: <span class="hljs-number">18px</span>; <span class="hljs-attribute">font-weight</span>:bold; &#125;<br></code></pre></td></tr></table></figure><p>在当时CSS不支持嵌套的时代，这样的CSS规则已经算是简单易看懂的了，但在浏览器商开始逐鹿时，被样式<code>-webkit-</code>、<code>-moz-</code>等前缀弄到臃肿难受。</p><h1 id="各大预处理器的出现"><a href="#各大预处理器的出现" class="headerlink" title="各大预处理器的出现"></a>各大预处理器的出现</h1><p>为了解决日益复杂的交互需求，及更规范的前端工程化，伟大的先驱们开发了许许多多加速工作效率解决方案。</p><p>各大CSS预处理器出现后，我基本每款都在项目中实践应用过，就说说他们的优劣势水水文吧。</p><blockquote><p>产品的优劣很多时候是针对需求而言的，所以以下优劣仅以是针对我个人而言，供大家参考。</p></blockquote><h2 id="Less"><a href="#Less" class="headerlink" title="Less"></a>Less</h2><p>个人最开始使用的预处理语言，当时的 webpack 在我身边刚开始普及，大部分还主要是gulp、grunt的天下，我的前端视界也还未被打开，前后端处于半分离的模式，由后端渲染页面，前端部分交互由接口完成。开始接触到Less的我觉得方便极了，拥有常见的变量，函数，导入，混合，逻辑运算、嵌套等功能，这些功能极大的减少了CSS的编写量，算是非常轻量好上手的预处理工具了。</p><h2 id="Sass"><a href="#Sass" class="headerlink" title="Sass"></a>Sass</h2><p>接触Less的同时也了解到有Sass这个更强大的预处理器。但个人对webpack及前端项目工程化还不太熟悉的我先选择了less做为入门先，有了基本的前端工程化思维后才正式开始使用Sass开发项目；Sass给我的感觉是在逻辑运算上，自定义函数等多方面更优于Less，但语法复杂度确实相较于Less难上手许多，语法也更为严谨，但对于个人对CSS预处理器的期望需求仅仅是完成变量，循环，模块化CSS，自定义函数等功能的我来说。Sass过于臃肿，最大烦恼莫过于npm安装时，node-sass在国内环境下无法正常安装，经常出现超时等无法安装的问题，虽说找到过解决方案，但实在是令人难受，CSS作为WEB界面配置的其中一环，使用一门如此麻烦严谨的语言，实在是有些难以接受。</p><h2 id="Stylus"><a href="#Stylus" class="headerlink" title="Stylus"></a>Stylus</h2><p>一次机缘巧合下，接触到了一个项目，项目中运用的CSS预处理语言独树一帜，无花括号，无分号等；其实早前了解时有知道过这个stylus，但当时主要展示的是无花括号及分号的写法，个人到现在其实都不太相信，因为没有界限及通过制表符完成嵌套等语句功能，实在时太容易出问题了。对于文件编码及换行符的未深入了解的鸵鸟人来说。这种不确定性我还是想避免的。事实证明，在刚开始接触这种写法时，还是挺爽的，但可能mac上打的一个奇怪的空格，或换行符等问题，会让你摸不着头脑的找不到出问题的位置。</p><blockquote><p>但这个语言其实亦支持使用花括号及分号，只需要配置格式化工具即可，这样就再也不会有那种因编码等导致的令人头大的问题了</p></blockquote><p><strong>VS Code中的格式化插件是：<a href="https://marketplace.visualstudio.com/items?itemName=thisismanta.stylus-supremacy">Manta’s Stylus Supremacy</a></strong></p><p>至此，这款stylus便是我最爱用的一款预处理工具了，如less般好上手，拥有sass般强大的功能，逻辑循环等语法简单且像js，支持集合变量等，让人爱不释手。下面是我最近有整合的stylus-shortcut库中部分代码，可以通过变量快速完成一套bootstrap式的CSS规则，快速应用。</p><blockquote><a href="/202012/stylus-shortcut/" title="stylus-shortcut 加速编写 CSS">stylus-shortcut 加速编写 CSS</a></blockquote><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><code class="hljs stylus"><span class="hljs-selector-class">.flex</span> &#123;<br><span class="hljs-variable">$flex_direction</span> = &#123;<br>h: row,<br>h_rtl: row-reverse,<br>v: column,<br>v_rtl: column-reverse<br>&#125;;<br><br><span class="hljs-keyword">for</span> <span class="hljs-variable">$name</span>, <span class="hljs-variable">$value</span> <span class="hljs-keyword">in</span> <span class="hljs-variable">$flex_direction</span> &#123;<br>&amp;-&#123;<span class="hljs-variable">$name</span>&#125; &#123;<br><span class="hljs-attribute">display</span>: flex;<br><span class="hljs-attribute">flex-direction</span>: <span class="hljs-variable">$value</span>;<br>&#125;<br>&#125;<br>&#125;<br><br>yoz_text_align = &#123;<br>  l: <span class="hljs-attribute">left</span>,<br>  r: <span class="hljs-attribute">right</span>,<br>  c: center,<br>  j: justify<br>&#125;;<br><br><span class="hljs-keyword">for</span> <span class="hljs-variable">$name</span>, <span class="hljs-variable">$value</span> <span class="hljs-keyword">in</span> yoz_text_align &#123;<br>  .text-a_&#123;<span class="hljs-variable">$name</span>&#125; &#123;<br>    <span class="hljs-attribute">text-align</span>: <span class="hljs-variable">$value</span>;<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;img src=&quot;/202012/css-pre-handler/cover.png&quot; class=&quot;&quot; width=&quot;0&quot; height=&quot;0&quot;&gt;
+
+&lt;h1 id=&quot;不想再回到的CSS时代&quot;&gt;&lt;a href=&quot;#不想再回到的CSS时代&quot; class=&quot;headerlink&quot; </summary>
+      
+    
+    
+    
+    <category term="杂文" scheme="https://kwokronny.top/categories/%E6%9D%82%E6%96%87/"/>
+    
+    
+    <category term="css" scheme="https://kwokronny.top/tags/css/"/>
+    
+    <category term="杂文" scheme="https://kwokronny.top/tags/%E6%9D%82%E6%96%87/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>KeePassXC 简易教程</title>
+    <link href="https://kwokronny.top/202011/keepassxc-tutorials/"/>
+    <id>https://kwokronny.top/202011/keepassxc-tutorials/</id>
+    <published>2020-11-24T00:45:09.000Z</published>
+    <updated>2021-01-14T10:46:56.069Z</updated>
+    
+    <content type="html"><![CDATA[<img src="/202011/keepassxc-tutorials/cover.png" class="" width="0" height="0"><blockquote><p>前面我写了一篇安利这款应用文章，接下来也就给大家大概的介绍下这款软件的使用教程 </p><a href="/202011/recommend-keepass/" title="安利一款免费好用的开源密码管理软件 - KeePassXC">安利一款免费好用的开源密码管理软件 - KeePassXC</a></blockquote><h2 id="使用教程"><a href="#使用教程" class="headerlink" title="使用教程"></a>使用教程</h2><ol><li><h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><p> 再放置个传送门 <a href="https://keepassxc.org/">传送门</a><br> 根据自己的系统下载匹配的<code>KeePassXC</code>软件,</p> <img src="/202011/keepassxc-tutorials/download_page.png" class=""><p> 下载后按系统常用方式安装软件即可。</p></li><li><h3 id="生成密码库文件"><a href="#生成密码库文件" class="headerlink" title="生成密码库文件"></a>生成密码库文件</h3><blockquote><p>已用KeePass或其他第三方基于KeePass的软件生成的密码文件，可跳过此步骤，直接打开食用<br> 安装完成后并打开后，如下图所示（软件语言多种，默认跟随系统语言）</p></blockquote><ol><li><p>点击 <code>新建数据库/Create new database</code> 弹出新建窗口</p></li><li><p>填写数据库名称，点击下一步。</p><img src="/202011/keepassxc-tutorials/create_lib.png" class=""></li><li><p>加密设置，此步骤可直接下一步，亦可详细了解下，毕竟我的隐私不涉及PY交易，所以加密复杂度正常就好。（后面想改也可以改）</p><img src="/202011/keepassxc-tutorials/setting_encrypt.png" class=""></li><li><p>密码设置，输入你的主密码，及再次输入后，确认并保存到存储的位置就完成啦。</p><blockquote><p>数据库的钥匙，唯一要记住的密码，每次数据库因限定时间未使用时或锁屏离开后锁定时，都需要输入这个密码解锁使用存储的密码。（主密码最好定期更换），有条件的亦可增加硬件设备使用，增强安全性。</p></blockquote><img src="/202011/keepassxc-tutorials/setting_main_password.png" class=""></li><li><p>__最后一个大问题__：密码的存放</p><p>因需要多平台使用，密码库的同步尤为重要；需要借助云盘完成。（当然，亦可以自架服务存储并使用）</p><p>推荐云盘：<code>oneDriver</code></p><p>那同步的位置好了后，接下来就只用把生成好的数据库文件放到云盘就OK啦。</p><img src="/202011/keepassxc-tutorials/icloud.png" class=""></li></ol></li><li><h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h3><ol><li><p>查看设置项，设置项可根据自己的习惯配置，我就不一一说明了。</p><blockquote><p>其中需要注意的是 常规-&gt;基础设置-&gt;用户界面 记得勾选<code>最小化而不是退出应用程序</code>，保持程序启动。</p></blockquote><img src="/202011/keepassxc-tutorials/base_setting.png" class=""></li><li><p>下载浏览器扩展并配置连接数据库</p><img src="/202011/keepassxc-tutorials/setting_browser.png" class=""><p>如上图按需配置，并按所用的浏览器下载对应的扩展。进入浏览器扩展进行配置绑定即可</p><img src="/202011/keepassxc-tutorials/bind_browser.jpg" class=""></li><li><p>当我们打开浏览器登陆时，KeePassXC会通过匹配链接后询问是否授权信息，确认后，当只有一个密码时就会直接自动输入到输入框了，该平台有多个账号时亦可点击输入框后切换。</p><img src="/202011/keepassxc-tutorials/browser_request.png" class=""><img src="/202011/keepassxc-tutorials/browser_input.png" class=""></li></ol><p>还有更多的细节等待你的摸索啦~</p></li></ol>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;img src=&quot;/202011/keepassxc-tutorials/cover.png&quot; class=&quot;&quot; width=&quot;0&quot; height=&quot;0&quot;&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;前面我写了一篇安利这款应用文章，接下来也就给大家大概的介绍下这款软件的使用教程 &lt;/p</summary>
+      
+    
+    
+    
+    <category term="软件分享" scheme="https://kwokronny.top/categories/%E8%BD%AF%E4%BB%B6%E5%88%86%E4%BA%AB/"/>
+    
+    
+    <category term="软件分享" scheme="https://kwokronny.top/tags/%E8%BD%AF%E4%BB%B6%E5%88%86%E4%BA%AB/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>安利一款免费好用的开源密码管理软件 - KeePassXC</title>
+    <link href="https://kwokronny.top/202011/recommend-keepass/"/>
+    <id>https://kwokronny.top/202011/recommend-keepass/</id>
+    <published>2020-11-23T23:20:49.000Z</published>
+    <updated>2021-01-14T10:46:56.069Z</updated>
+    
+    <content type="html"><![CDATA[<img src="/202011/recommend-keepass/cover.png" class="" width="0" height="0"><h2 id="用过的密码管理软件"><a href="#用过的密码管理软件" class="headerlink" title="用过的密码管理软件"></a>用过的密码管理软件</h2><p>推荐前先介绍自己在密码管理上经历过的历程，无兴趣可直接跳过这一段</p><ol><li><h3 id="级别密码制"><a href="#级别密码制" class="headerlink" title="级别密码制"></a>级别密码制</h3><p>统一三个级别的密码，分为：无隐私风险，轻隐私风险，重度隐私风险的密码，密码复杂度按级别升高。方便，只用记三个密码即可尽可能的保护自己的隐私和方便自己的记忆。</p></li><li><h3 id="lastpass"><a href="#lastpass" class="headerlink" title="lastpass"></a>lastpass</h3><p><code>超能小紫</code>最早推荐我用的密码管理的CHORME扩展，后来也因为曝出过相关的密码泄漏新闻，所以就试着找个安全些的。</p></li><li><h3 id="1Password"><a href="#1Password" class="headerlink" title="1Password"></a>1Password</h3><p>同样是<code>超能小紫</code>给我安利的，刚好试着免费试用1年，试用了几个月，个人在使用上感觉在交互还是不太喜爱，各平台的操作相对不统一，密码生成、删除，修改等操作上有些麻烦，特别是我在新平台注册活登陆时不会自动收集我的信息询问我是否存储，不知是不是我没配置好；这样想想订阅费用还是让我稍稍心痛的。</p></li></ol><h2 id="正式安利-KeePass"><a href="#正式安利-KeePass" class="headerlink" title="正式安利 - KeePass"></a>正式安利 - KeePass</h2><p>KeePass起初真只是抱着试试的心态，毕竟大概如果有了解的话，KeePass的相关官网包括网上许多的使用文档中的软件截图，界面风格跟2000年基本无异了；我主要电脑是MacBook的，一开始还真没打算用这套全平台解决方案，想着再找找，但突然认真看了下网站，发现开源的项目，都有着伟大的开源精神的程序员圈子，一个平台出现了三四种基于keepass的第三方版本及各种原生插件。</p><img src="/202011/recommend-keepass/main_big.png" class=""><p>官方版本KeePass</p><ol><li><h3 id="开始使用"><a href="#开始使用" class="headerlink" title="开始使用"></a>开始使用</h3><p>开始试着把以前的密码数据导出后，开始试着转移密码到这个新的解决方案的载体时，官方提供的各平台版本，其实在交互上及实用性上都确认不及<code>1Password</code>所带出的基本功能，各平台间交互差异大，且直接无浏览器扩展的支持，有的也只是已从谷歌官方应用扩展商店下架后，博主间传出的离线版本了；所以还真有点想放弃，老实交钱用回<code>1Password</code>了。</p><blockquote><p>就在我准备放弃前，多搜索了一次。我拥抱了开源</p></blockquote></li><li><h3 id="发现宝藏"><a href="#发现宝藏" class="headerlink" title="发现宝藏"></a>发现宝藏</h3><p>在一次无意的搜索中，我发现了这款基于<code>KeePass</code>开发的第三方全平台支持的软件版本</p><a target="_blank" href="https://keepassxc.org/"><center><img src="/202011/recommend-keepass/keepassxc-logo.svg" class="" width="100"></center><center style="color:#30782f">KeePassXC</center></a><p>一起先看看的截图</p><img src="/202011/recommend-keepass/welcome_screen.png" class=""><img src="/202011/recommend-keepass/database_view.png" class=""></li></ol><blockquote><a href="/202011/keepassxc-tutorials/" title="KeePassXC 简易教程">KeePassXC 简易教程</a></blockquote>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;img src=&quot;/202011/recommend-keepass/cover.png&quot; class=&quot;&quot; width=&quot;0&quot; height=&quot;0&quot;&gt;
+
+&lt;h2 id=&quot;用过的密码管理软件&quot;&gt;&lt;a href=&quot;#用过的密码管理软件&quot; class=&quot;headerlink&quot; ti</summary>
+      
+    
+    
+    
+    <category term="软件分享" scheme="https://kwokronny.top/categories/%E8%BD%AF%E4%BB%B6%E5%88%86%E4%BA%AB/"/>
+    
+    
+    <category term="软件分享" scheme="https://kwokronny.top/tags/%E8%BD%AF%E4%BB%B6%E5%88%86%E4%BA%AB/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>雪碧图命令行工具开发完结撒花</title>
+    <link href="https://kwokronny.top/202011/sprites-cli-develop/"/>
+    <id>https://kwokronny.top/202011/sprites-cli-develop/</id>
+    <published>2020-11-20T00:00:00.000Z</published>
+    <updated>2021-01-13T12:48:26.201Z</updated>
+    
+    <content type="html"><![CDATA[<img src="/202011/sprites-cli-develop/cover.png" class="" width="0" height="0"><h2 id="小图的烦恼"><a href="#小图的烦恼" class="headerlink" title="小图的烦恼"></a>小图的烦恼</h2><p>项目中经常有不可避免的出现小图标，雪碧图依然是很多团队的选择，网上也有了各种各样的雪碧图插件或方案等。但大多数仅仅实现了简易的拼图及规则生成，我在项目中常常遇到两个小图需要在用户交互时切换等甚至更为复杂的需求；终于在百忙<del>懒癌绝症</del>之中搞了一个生成雪碧图的命令行小工具，望大家参考指教。</p><p><a href="https://github.com/hiyoz/sprites-cli">传送门</a></p><h2 id="快速上手"><a href="#快速上手" class="headerlink" title="快速上手"></a>快速上手</h2><ul><li><h3 id="安装与使用"><a href="#安装与使用" class="headerlink" title="安装与使用"></a>安装与使用</h3></li></ul><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs bash">npm install @hiyoz/sprite-cli -g<br><br>sprites-cli [options]<br><br>通过命令对指定目录下的所有结尾 -sprite 结束的雪碧图文件夹，生成雪碧图到指定的生成目录，并生成雪碧图的对应样式文件。支持不同文件夹自定义CSS样式<br><br>Options:<br>  -s, --scope [value]  [必填]设定范围目录，范围目录下所有结尾 -sprite 结束的雪碧图文件夹<br>  -r, --rule [value]   生成sheet规则版本: css less scss stylus，默认使用css若 优先使用雪碧图文件夹下有 template.js 生成规则脚本<br>  -d, --dist [value]   生成目录[范围目录的相对路径]，默认 <span class="hljs-string">&quot;./&quot;</span><br></code></pre></td></tr></table></figure><ul><li><h3 id="基础使用示例"><a href="#基础使用示例" class="headerlink" title="基础使用示例"></a>基础使用示例</h3><p>  <code>demo</code>目录下<code>galaxy-sprite</code>存储了等待合成的雪碧图原料。希望生成stylus的CSS规则文件</p>  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">sprites-cli -s demo -r stylus<br></code></pre></td></tr></table></figure><p>  通过命令即可在demo目录下生成galaxy-sprite.styl与galaxy-sprite.png文件。</p></li><li><h3 id="自定义样式生成"><a href="#自定义样式生成" class="headerlink" title="自定义样式生成"></a>自定义样式生成</h3><p>  部分雪碧图在使用时希望支持一定的交互效果，如：某图标在移过去时变换成另一个图标时；即可通过自定义样式生成的方案，在自定义生成符合需求的CSS规则。</p><p>  仅需将在 相应的雪碧图文件夹内 如：<code>[name]-sprite</code>文件夹下，创建<code>template.js</code>文件，代码如下：</p><blockquote><p>当雪碧图文件夹下存在<code>template.js</code>时，该雪碧图文件夹的CSS规则生成仅以此为唯一的生成规则</p></blockquote><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-built_in">module</span>.exports = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">spritesheet</span>) </span>&#123;<br>  <span class="hljs-keyword">let</span> spritesCSS = <span class="hljs-string">``</span>;<br>  <span class="hljs-keyword">if</span> (<span class="hljs-built_in">Array</span>.isArray(spritesheet.sprites)) &#123;<br>    spritesCSS = spritesheet.sprites<br>      .map(<span class="hljs-function">(<span class="hljs-params">sprite</span>) =&gt;</span> &#123;<br>        <span class="hljs-keyword">let</span> name = <span class="hljs-string">&quot;&quot;</span>;<br>        <span class="hljs-keyword">if</span> (<span class="hljs-regexp">/^van-/</span>.test(sprite.name)) &#123;<br>          name = <span class="hljs-string">`.<span class="hljs-subst">$&#123;sprite.name&#125;</span>`</span>;<br>        &#125; <span class="hljs-keyword">else</span> &#123;<br>          name = <span class="hljs-string">`.&#123;$spriteName&#125;-<span class="hljs-subst">$&#123;sprite.name&#125;</span>`</span>;<br>        &#125;<br>        <span class="hljs-keyword">if</span> (<span class="hljs-regexp">/^tab-([\w]+)_a$/</span>.test(sprite.name)) &#123;<br>          name = <span class="hljs-string">&quot;.van-tabbar-item--active &quot;</span> + name.replace(<span class="hljs-string">&quot;_a&quot;</span>, <span class="hljs-string">&quot;&quot;</span>);<br>        &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (<span class="hljs-regexp">/_a$/</span>.test(sprite.name)) &#123;<br>          name = name.replace(<span class="hljs-string">&quot;_a&quot;</span>, <span class="hljs-string">&quot;.active&quot;</span>);<br>        &#125;<br>        <span class="hljs-keyword">return</span> <span class="hljs-string">`</span><br><span class="hljs-string">          <span class="hljs-subst">$&#123;name&#125;</span> &#123;</span><br><span class="hljs-string">            <span class="hljs-subst">$&#123;sprite.name.indexOf(<span class="hljs-string">&quot;van-&quot;</span>) &gt; -<span class="hljs-number">1</span> ? <span class="hljs-string">&quot;@extend .&#123;$spriteName&#125;&quot;</span> : <span class="hljs-string">&quot;&quot;</span>&#125;</span></span><br><span class="hljs-string">            background-position: ptr(-<span class="hljs-subst">$&#123;sprite.x&#125;</span>) ptr(-<span class="hljs-subst">$&#123;sprite.y&#125;</span>);</span><br><span class="hljs-string">            width: ptr(<span class="hljs-subst">$&#123;sprite.width&#125;</span>);</span><br><span class="hljs-string">            height: ptr(<span class="hljs-subst">$&#123;sprite.height&#125;</span>);</span><br><span class="hljs-string">          &#125;</span><br><span class="hljs-string">        `</span>;<br>      &#125;)<br>      .join(<span class="hljs-string">&quot;&quot;</span>);<br>  &#125;<br>  <span class="hljs-keyword">let</span> mainCSS = <span class="hljs-string">`</span><br><span class="hljs-string">      $spriteName= &quot;<span class="hljs-subst">$&#123;spritesheet.name&#125;</span>&quot;</span><br><span class="hljs-string">      .&#123;$spriteName&#125;&#123;</span><br><span class="hljs-string">          position: relative;</span><br><span class="hljs-string">          display: inline-block;</span><br><span class="hljs-string">          font-style: normal;</span><br><span class="hljs-string">          vertical-align: middle;</span><br><span class="hljs-string">          background-image: url(&quot;<span class="hljs-subst">$&#123;spritesheet.image&#125;</span>&quot;);</span><br><span class="hljs-string">          background-size: ptr(<span class="hljs-subst">$&#123;spritesheet.width&#125;</span>) ptr(<span class="hljs-subst">$&#123;spritesheet.height&#125;</span>);</span><br><span class="hljs-string">      &#125;</span><br><span class="hljs-string">      <span class="hljs-subst">$&#123;spritesCSS&#125;</span></span><br><span class="hljs-string">  `</span>;<br>  <span class="hljs-keyword">return</span> [mainCSS, <span class="hljs-string">&quot;styl&quot;</span>]; <span class="hljs-comment">//返回样式规则文本和文件后缀名</span><br>&#125;;<br></code></pre></td></tr></table></figure><p>  这样就可以通过自由的改变逻辑完成多变的需求啦。</p></li></ul>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;img src=&quot;/202011/sprites-cli-develop/cover.png&quot; class=&quot;&quot; width=&quot;0&quot; height=&quot;0&quot;&gt;
+
+&lt;h2 id=&quot;小图的烦恼&quot;&gt;&lt;a href=&quot;#小图的烦恼&quot; class=&quot;headerlink&quot; title=&quot;小</summary>
+      
+    
+    
+    
+    <category term="解决方案" scheme="https://kwokronny.top/categories/%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/"/>
+    
+    <category term="WEB开发" scheme="https://kwokronny.top/categories/%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/WEB%E5%BC%80%E5%8F%91/"/>
+    
+    
+    <category term="nodejs" scheme="https://kwokronny.top/tags/nodejs/"/>
+    
+    <category term="工具" scheme="https://kwokronny.top/tags/%E5%B7%A5%E5%85%B7/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>rem响应式网站适配解决方案</title>
+    <link href="https://kwokronny.top/202011/web-rem-resolve/"/>
+    <id>https://kwokronny.top/202011/web-rem-resolve/</id>
+    <published>2020-11-19T00:00:00.000Z</published>
+    <updated>2021-01-14T10:46:56.073Z</updated>
+    
+    <content type="html"><![CDATA[<img src="/202011/web-rem-resolve/cover.png" class="" width="0" height="0"><h2 id="REM是什么"><a href="#REM是什么" class="headerlink" title="REM是什么"></a>REM是什么</h2><blockquote><p>本文属REM方案的进阶思考，阅读者默认已了解REM方案的原理</p></blockquote><ul><li>搜 <a href="https://www.google.com/search?q=rem+%E6%96%B9%E6%A1%88">Google</a></li><li>搜 <a href="https://www.baidu.com/s?w=rem+%E6%96%B9%E6%A1%88">百度</a></li></ul><h2 id="常见的解决方案"><a href="#常见的解决方案" class="headerlink" title="常见的解决方案"></a>常见的解决方案</h2><ul><li><strong>IDE 插件进行直接转换</strong><ul><li>优点：装好即用</li><li>缺点：不易维护，且大部分情况下无法团队协同，直接修改了源码的数值单位，且一般使用 1rem = 16px 的方案，导致被转换后小数点太多，再次修改时不直观</li></ul></li><li><strong>WebPack Plugin或Loader转换</strong><ul><li>优点：相较于IDE易于团队协作，仅需配置即可直接使用</li><li>缺点：不太支持响应式设置</li></ul></li></ul><h2 id="REM-解决方案"><a href="#REM-解决方案" class="headerlink" title="REM 解决方案"></a>REM 解决方案</h2><h3 id="方案"><a href="#方案" class="headerlink" title="方案"></a>方案</h3><blockquote><p>以需开发 <em>PC端</em> 和 <em>手机端</em> 的响应式项目为例</p></blockquote><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs javascript">(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>&#123;<br>  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">recal</span>(<span class="hljs-params"></span>) </span>&#123;<br>    <span class="hljs-keyword">let</span> docElement = <span class="hljs-built_in">document</span>.documentElement || <span class="hljs-built_in">document</span>.body;<br>    <br>    <span class="hljs-comment">// #region 可根据响应式需求自由调整逻辑</span><br>    <span class="hljs-keyword">let</span> clientWidth = docElement.clientWidth,<br>      designWidth = <span class="hljs-number">1200</span>; <span class="hljs-comment">//PC端设计稿宽度（主内容区域）</span><br><br>    <span class="hljs-keyword">if</span> (clientWidth &lt; <span class="hljs-number">750</span>) &#123; <span class="hljs-comment">// 客户端屏幕宽度小于一定尺寸时</span><br>      designWidth = <span class="hljs-number">640</span>; <span class="hljs-comment">//转为移动端设计稿宽度</span><br><br>    &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (clientWidth &lt; designWidth) &#123;<span class="hljs-comment">// 客户端屏幕宽度小于PC端设计稿时</span><br>      clientWidth -= <span class="hljs-number">80</span> <br>      <span class="hljs-comment">//解决在750~1200左右单独设计的情况，让内容主体与浏览器有空隙</span><br><br>    &#125; <span class="hljs-keyword">else</span> &#123; <span class="hljs-comment">//否则直接应用PC端设计稿宽度</span><br>      clientWidth = designWidth;<br>    &#125;<br>    <span class="hljs-comment">// #region </span><br>    docElement.style.fontSize = (clientWidth / designWidth) * <span class="hljs-number">100</span> + <span class="hljs-string">&quot;px&quot;</span>;<br>  &#125;<br>  <span class="hljs-built_in">window</span>.addEventListener(<span class="hljs-string">&quot;resize&quot;</span>, recal);<br>  recal();<br>&#125;)();<br></code></pre></td></tr></table></figure><p><strong>将js代码放在 <code>&lt;head&gt;</code> 内，且不依赖任何插件以保证他最早被执行。</strong></p><p>使用css预处理器编写函数(我这边用的是stylus)</p><figure class="highlight styl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs styl"><span class="hljs-function"><span class="hljs-title">ptr</span><span class="hljs-params">(px)</span></span>&#123;<br>  return unit((px / 100), &#x27;rem&#x27;);<br>&#125;<br><br>body&#123;<br>  <span class="hljs-attribute">font-size</span>: ptr(<span class="hljs-number">12</span>)<br>&#125;<br><br><span class="hljs-comment">// 使用方法</span><br>.container&#123;<br>  <span class="hljs-attribute">width</span>: ptr(<span class="hljs-number">1200</span>);<br>&#125;<br></code></pre></td></tr></table></figure><h3 id="主要思路"><a href="#主要思路" class="headerlink" title="主要思路"></a>主要思路</h3><p>  通过响应式设计稿尺寸不一的情况下，通过 <code>窗口宽度</code> 变化时判断选用不同端的 <code>设计稿宽度</code> 运算，辅以 <code>css3</code> 的 <code>media</code> 即可完美复现响应式下的设计啦</p><p>  通过 css预处理器的function功能，对单位直接运算，这样就可以愉快的直接将设计稿取到的值直接写入到 <code>ptr(value)</code> 中完成复现。</p><blockquote><p>记一次使用 css预处理 ptr函数 的奇妙经历：当你因某些原因更换方案时，可直接重写 ptr函数 的 运算方式 达到一步到位的维护效果</p></blockquote>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;img src=&quot;/202011/web-rem-resolve/cover.png&quot; class=&quot;&quot; width=&quot;0&quot; height=&quot;0&quot;&gt;
+&lt;h2 id=&quot;REM是什么&quot;&gt;&lt;a href=&quot;#REM是什么&quot; class=&quot;headerlink&quot; title=&quot;REM是</summary>
+      
+    
+    
+    
+    <category term="解决方案" scheme="https://kwokronny.top/categories/%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/"/>
+    
+    <category term="WEB开发" scheme="https://kwokronny.top/categories/%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/WEB%E5%BC%80%E5%8F%91/"/>
+    
+    
+    <category term="web" scheme="https://kwokronny.top/tags/web/"/>
+    
+  </entry>
+  
+</feed>
